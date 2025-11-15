@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAVEL WONDERS</title>
+    <style>
+        /* ==================================== */
+        /* === 1. BASE STYLES & LAYOUT SETUP === */
+        /* ==================================== */
+        body {
+            /* Set up body to stack all elements vertically */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background for visibility */
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            width: 95%;
+            max-width: 1200px;
+            margin-top: 40px;
+        }
+
+        p {
+            text-align: center;
+            width: 95%;
+            max-width: 800px;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        /* Helper class for the theme color, for consistency */
+        .theme-color {
+            color: rgb(61, 162, 187);
+        }
+
+        /* ======================================= */
+        /* === 2. HEADER / NAVIGATION BAR === */
+        /* ======================================= */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            margin: 0;
+            padding: 0;
+            height: 40px;
+            width: 40px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .links {
+            display: flex; 
+            gap: 30px; 
+        }
+
+        .links a {
+            color: rgb(8, 8, 8);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: rgb(61, 162, 187);
+            text-decoration: underline;
+        }
+
+        /* ====================================== */
+        /* === 3. BANNER SECTION (VIDEO BACKGROUND) === */
+        /* ====================================== */
+        .banner {
+            width: 100%;
+            height: 450px; 
+            position: relative;
+            margin-bottom: 30px;
+            overflow: hidden; /* Important to contain the video */
+        }
+        
+        /* New CSS for the video element to act as a background cover */
+        .banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+            background-size: cover;
+        }
+
+        .container {
+            /* Overlay text container - fully centered and responsive */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centers the element regardless of size */
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            /* Changed to a dark semi-transparent background for better text contrast over video */
+            background-color: rgba(0, 0, 0, 0.3); 
+            border-radius: 10px;
+            color: white; /* Changed text color to white */
+            box-sizing: border-box;
+            z-index: 1; /* Keep text above the video */
+        }
+
+        .container h1 {
+            font-size: 28px; /* Slightly larger title */
+            margin-top: 0;
+            color: rgb(61, 162, 187);
+        }
+
+        .container p {
+            font-size: 18px;
+            margin-bottom: 0;
+            max-width: none;
+            text-align: center;
+            color: white;
+        }
+        
+        .container strong {
+            color: rgb(61, 162, 187); /* Highlighted text in theme color */
+        }
+
+        /* =================================== */
+        /* === 4. CONTENT GRIDS (RESPONSIVE) === */
+        /* =================================== */
+
+        .main-grid, .main-r {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+            padding: 10px;
+            width: 95%;
+            max-width: 1200px;
+            margin-bottom: 30px;
+        }
+
+        .grid, .r {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: auto;
+            padding: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow for modern feel */
+            border-radius: 12px;
+            background-color: white; /* Changed to white for better contrast */
+            box-sizing: border-box;
+            height: 100%;
+            transition: transform 0.3s; /* Added hover transition */
+        }
+        
+        .grid:hover, .r:hover {
+            transform: translateY(-5px); /* Lift card slightly on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid img, .r img {
+            width: 100%;
+            max-width: 250px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .grid button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: auto; 
+            transition: background-color 0.3s;
+        }
+        
+        .grid button:hover {
+            background-color: rgb(61, 162, 187); /* Theme color hover */
+        }
+
+        .grid .h, .r .h {
+            font-size: 18px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .grid .d, .r .d {
+            font-size: 14px;
+            margin-bottom: 15px;
+            margin-top: 5px;
+        }
+
+        .pk{
+            text-align: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        /* ================================= */
+        /* === 5. FOOTER === */
+        /* ================================= */
+        footer {
+            width: 100%;
+            background-color: black;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .ftr {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 30px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .g, .k, .o {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .h, .m {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* ================================ */
+        /* === 6. MEDIA QUERIES (RESPONSIVENESS) === */
+        /* ================================ */
+
+        /* --- Mobile Navbar Stacked --- */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                padding-bottom: 20px;
+            }
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 10px;
+            }
+            .links a {
+                padding: 5px 0;
+                display: block;
+            }
+            .banner {
+                 height: 300px; /* Adjust height for smaller screens */
+            }
+            .container h1 {
+                font-size: 20px;
+            }
+            .container p {
+                font-size: 14px;
+            }
+        }
+        
+        /* --- Tablet View (601px and wider) --- */
+        @media (min-width: 601px) {
+            .main-grid, .main-r {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ftr {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* --- Desktop View (1024px and wider) --- */
+        @media (min-width: 1024px) {
+            .main-grid, .main-r {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .ftr {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="lgpic.jpg" alt="Logo image error">
+        </div>
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="destiny.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="booking.html">Bookings</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+    
+    <section class="banner">
+        <video autoplay muted loop playsinline poster="banner.jpg">
+            <source src="banner.mp4" type="video/mp4">
+            <img src="banner.jpg" alt="Banner fallback image"> 
+        </video>
+        
+        <div class="container">
+            <h1>WELCOME TO THE WORLD OF WONDERS!</h1>
+            <p>
+                <b>Let the "Busy World" behind yourself and dive into the wonders of nature with</b> <strong>"TRAVEL WONDERS"</strong><br>
+                <b>Lorem ipsum dolor sit, amet consectetur adipisicing <br> Odio, assumenda voluptatum. Illum eius dolor
+                officia explicabo ratione, blanditiis quos quidem.</b>
+            </p>
+        </div>
+    </section>
+    
+    <h2>TOP DESTINATIONS AROUND THE WORLD ALONG WITH WONDERS</h2>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit ut cumque nam itaque sint voluptas? Esse
+        quos sed deserunt ut mollitia sint, at aperiam dolorum.</p>
+
+    <div class="main-grid">
+        <div class="grid">
+            <img src="turkey1.jpg" alt="Blue Mosque, Turkey">
+            <h3 class="h">BLUE MOSQUE</h3><br>
+            <p class="d">Meet with <b>"inner self"</b></p><br>
+            <button>BOOK TICKET TO VISIT</button>
+        </div>
+
+        <div class="grid">
+            <img src="tturkey2.jpg" alt="Cappadocia, Turkey">
+            <h3 class="h">Cappadocia</h3><br>
+            <p class="d">Visit to <b>"Explore"</b></p><br>
+            <button>BOOK TICKET TO VISIT</button>
+        </div>
+        <div class="grid">
+            <img src="turkey.jpg" alt="Taksim Square, Turkey">
+            <h3 class="h">Taksim Square</h3><br>
+            <p class="d">Experience the <b>"Wonder"</b></p><br>
+            <button>BOOK TICKET TO VISIT</button>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <div class="grid">
+            <img src="c1.jpg" alt="Santorini, Greece">
+            <h3 class="h">Santorini</h3><br>
+            <p class="d">Experience the <b>"wonders"</b></p><br>
+            <button>BOOK TICKET TO VISIT</button>
+        </div>
+
+        <div class="grid">
+            <img src="c2.jpg" alt="Swiss Alps">
+            <h3 class="h">Swiss Alps</h3><br>
+            <p class="d">Experience the <b>" wonder"</b></p><br>

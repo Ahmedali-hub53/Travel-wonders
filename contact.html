@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | TRAVEL WONDERS</title>
+    <style>
+        /* ==================================== */
+        /* === 1. BASE STYLES & LAYOUT SETUP === */
+        /* ==================================== */
+        body {
+            /* Set up body to stack all elements vertically and center them */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+
+        /* Helper class for constraining width of major sections */
+        .content-width {
+            width: 95%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+
+        /* Span for colored text */
+        span {
+            color: rgb(61, 162, 187);
+        }
+
+        /* ======================================= */
+        /* === 2. HEADER / NAVIGATION BAR (RESPONSIVE) === */
+        /* ======================================= */
+        header {
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: 40px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .links a {
+            color: rgb(8, 8, 8);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: rgb(61, 162, 187);
+            text-decoration: underline;
+        }
+
+        /* ====================================== */
+        /* === 3. BANNER SECTION (WITH OVERLAY) === */
+        /* ====================================== */
+        .banner {
+            width: 100%;
+            height: 250px; /* Reduced height for contact page banner */
+            position: relative;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .container {
+            /* Overlay text container - fully centered */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white; /* Ensure text stands out */
+        }
+
+        .container h1 {
+            /* Reset banner H1 styles */
+            margin: 0;
+            font-size: clamp(30px, 8vw, 60px); 
+            color: white; /* Default color */
+        }
+
+        .container h1 span {
+            color: rgb(61, 162, 187); /* Colored span */
+        }
+        
+        /* ====================================== */
+        /* === 4. MAIN CONTACT CONTENT (GRID LAYOUT) === */
+        /* ====================================== */
+        .contact-grid {
+            /* Container for the form and the "Get in Touch" info */
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile default: 1 column */
+            gap: 40px;
+            padding: 20px 0;
+            width: 95%;
+            max-width: 1000px;
+            margin-bottom: 40px;
+        }
+
+        /* Left Column: Contact Form */
+        .c-form {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+        }
+        
+        .c-form label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .c-form input[type="text"],
+        .c-form input[type="email"],
+        .c-form input[type="number"],
+        .c-form input[type="date"],
+        .c-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .c-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .c-form button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .c-form button span {
+            color: white; /* Make the span text white on black button */
+        }
+
+        .c-form button:hover {
+            background-color: rgb(61, 162, 187);
+        }
+
+        /* Right Column: Get In Touch Info */
+        .touch {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .touch h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .touch h2 {
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .touch p {
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .t p {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* ================================= */
+        /* === 5. FOOTER (GRID & RESPONSIVE) === */
+        /* ================================= */
+        footer {
+            width: 100%;
+            background-color: black;
+            color: white;
+            box-sizing: border-box;
+            padding: 20px 0;
+        }
+
+        .ftr {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* Mobile default: 1 column */
+            gap: 30px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+            width: 95%;
+            box-sizing: border-box;
+        }
+
+        .f, .j, .l, .c {
+            /* Reset fixed/absolute positioning */
+            position: static; 
+            width: auto;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }
+
+        .g, .k, .o {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .h4, .m, .l p, .c p {
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: left;
+        }
+        
+        /* ================================ */
+        /* === 6. MEDIA QUERIES (BREAKPOINTS) === */
+        /* ================================ */
+
+        /* --- Tablet View (601px and wider) --- */
+        @media (min-width: 601px) {
+            
+            /* Footer: 2 Columns */
+            .ftr {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* --- Desktop View (850px and wider) --- */
+        @media (min-width: 850px) {
+            /* Main Content: 2 Columns */
+            .contact-grid {
+                grid-template-columns: 1.5fr 1fr; /* Form slightly wider than info */
+            }
+
+            /* Footer: 4 Columns */
+            .ftr {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            /* Align Quick Links (j) and Services (l) content to center/right for better visual balance on desktop */
+            .j, .l, .c { text-align: center; }
+            .j p, .l p, .c p { text-align: center; }
+            .j .k, .l .o, .c .o { text-align: center; }
+        }
+
+        /* --- Mobile View (480px and narrower) --- */
+        @media (max-width: 480px) {
+            /* Navbar Stacked for Mobile */
+            header {
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 10px;
+            }
+            .links a {
+                padding: 5px 0;
+                display: block;
+                text-align: center;
+            }
+            .banner {
+                 height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="lgpic.jpg" alt="TRAVEL WONDERS Logo">
+        </div>
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="destiny.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="booking.html">Bookings</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+    
+    <section class="banner">
+        <img src="banner.jpg" alt="A scenic travel banner">
+        <div class="container">
+            <h1><span>CONTACT</span>US</h1>
+        </div>
+    </section>
+    
+    <div class="contact-grid content-width">
+        <div class="c-form">
+            <form>
+                <label for="name">Your Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+                
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Travelwonders@email.com" required>
+                
+                <label for="age">Age (Date of Birth)</label>
+                <input type="date" id="age" required>
+                
+                <label for="CNIC">CNIC</label>
+                <input type="number" id="CNIC" placeholder="Enter CNIC number">
+                
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Enter your query or feedback..."></textarea>
+                
+                <button type="submit"><span>Submit</span></button>
+            </form>
+        </div>
+        
+        <div class="touch">
+            <h3><span>Contact us</span></h3>
+            <h2>Get in touch</h2>
+            <p>Lorem, ipsum consectetur adipisicing elit. Eveniet, doloremque nulla! Fuga repellat
+                perspiciatis magnam! Laudantium architecto quia exercitationem deserunt.</p>
+            <div class="t">
+                <p>Call us<br>
+                    **125-98776454**</p>
+                <p>E-mail<br>
+                    **Travelwonders@email.com**</p>
+                <p>Website<br>
+                    **www.travelwonders.com**</p>
+                <p>Follow us<br>
+                    **Facebook Instagram X**</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="ftr">
+            <div class="f">
+                <p class="g">TRAVEL WONDERS</p>
+                <p class="h4">Lorem, ipsum dolor sit amet <br> consectetur adipisicing elit.<br>
+                    Quas, dignissimos delec.Lorem, ipsum dolor sit amet <br> consectetur adipisicing elit.<br>
+                    Quas, dignissimos delec.</p>
+            </div>
+            <div class="j">
+                <p class="k">Quick Links</p>
+                <p class="m"> Home<br>
+                    Destinations<br>
+                    About<br>
+                    Bookings<br>
+                    Contact</p>
+            </div>
+            <div class="l">
+                <h4 class="o">Services</h4>
+                <p>Best serving<br>
+                    Trained Staff<br>
+                    Puntuality<br>
+                    Best Management</p>
+            </div>
+            <div class="c">
+                <h4 class="o">For Details visit</h4>
+                <p>Travelwonders@e-mail.com<br>
+                    +123-9807609</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

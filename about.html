@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | TRAVEL WONDERS</title>
+    <style>
+        /* ==================================== */
+        /* === 1. BASE STYLES & LAYOUT SETUP === */
+        /* ==================================== */
+        body {
+            /* Set up body to stack all elements vertically and center them */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; 
+            box-sizing: border-box;
+        }
+
+        /* Responsive width for main content areas */
+        .content-width {
+            width: 95%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h4 {
+            /* Text centering for headings */
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .abt p, .f p, .j p, .l p, .c p {
+            /* General paragraph styles */
+            line-height: 1.6;
+            margin: 10px 0;
+            padding: 0;
+            /* Ensure main content paragraphs are aligned to the left within their container */
+            text-align: left; 
+        }
+
+        /* ======================================= */
+        /* === 2. HEADER / NAVIGATION BAR (RESPONSIVE) === */
+        /* ======================================= */
+        header {
+            /* Full width header */
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-bottom: 30px;
+
+            /* Flexbox for layout */
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .logo {
+            /* Simple flex container to hold the logo image */
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%; 
+            object-fit: cover;
+        }
+
+        .links {
+            /* Use Flexbox for navigation links */
+            display: flex;
+            gap: 25px; /* Spacing between links */
+        }
+
+        .links a {
+            color: rgb(8, 8, 8);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: rgb(61, 162, 187);
+            text-decoration: underline;
+        }
+
+
+        /* ====================================== */
+        /* === 3. ABOUT CONTENT (CENTERED & RESPONSIVE) === */
+        /* ====================================== */
+
+        .abt {
+            /* The main About container */
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            
+            /* Apply max-width for cleaner content layout */
+            width: 90%;
+            max-width: 800px;
+            box-sizing: border-box;
+        }
+        
+        .abt h1 {
+            /* Headings inside the About box */
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Apply text-align: left to paragraphs inside the abt container 
+           to match the look in your screenshot */
+        .abt p {
+            text-align: left;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        /* Specific centering for the "Why Choose" title */
+        .abt h1:nth-of-type(2) {
+            margin-top: 40px;
+        }
+
+        /* ================================= */
+        /* === 4. FOOTER (GRID & RESPONSIVE) === */
+        /* ================================= */
+        footer {
+            width: 100%;
+            background-color: black;
+            color: white;
+            box-sizing: border-box;
+            padding: 20px 0;
+        }
+
+        .ftr {
+            /* Use CSS Grid for responsive columns */
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* Mobile default: 1 column */
+            gap: 30px;
+            padding: 20px;
+            margin: 0 auto; /* Center the footer grid */
+            max-width: 1200px;
+            width: 95%;
+            box-sizing: border-box;
+        }
+
+        /* Styling for the footer sections (f, j, l, c) */
+        .f, .j, .l, .c {
+            /* Reset absolute positioning */
+            position: static; 
+            width: auto;
+            text-align: left; /* Default text alignment for stacked columns */
+            padding: 0;
+            margin: 0;
+        }
+
+        .g, .k, .o {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .h, .m {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* ================================ */
+        /* === 5. MEDIA QUERIES (BREAKPOINTS) === */
+        /* ================================ */
+
+        /* --- Tablet View (601px and wider) --- */
+        @media (min-width: 601px) {
+            
+            /* Footer: 2 Columns */
+            .ftr {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* --- Desktop View (900px and wider) --- */
+        @media (min-width: 900px) {
+            
+            /* Footer: 4 Columns */
+            .ftr {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* --- Mobile View (480px and narrower) --- */
+        @media (max-width: 480px) {
+            /* Navbar Stacked for Mobile */
+            header {
+                flex-direction: column;
+            }
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 10px;
+            }
+            .links a {
+                padding: 5px 0;
+                display: block;
+                text-align: center;
+            }
+            .logo {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="lgpic.jpg" alt="TRAVEL WONDERS Logo">
+        </div>
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="destiny.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="booking.html">Bookings</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+    
+    <div class="abt content-width">
+        <h1>About Us</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum voluptatem in repudiandae maxime, explicabo
+            obcaecati modi qui similique, minima pariatur laborum voluptas quod suscipit? Vero minima harum
+            distinctio saepe ab. Lorem ipsum dolor sit amet, consectetur adipisicing elit amet commodi ex corporis unde veritatis quod magnam aliquid pariatur quia. Commodi rerum at similique perferendis beatae animi non esse. Ratione. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, dignissimos numquam. Quaerat, labore esse. Quidem labore harum incidunt, assumenda reprehenderit iusto aperiam magni ea laudantium quasi aliquid ipsum at officia?</p>
+            
+        <h1>Why Choose "TRAVEL WONDERS"</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero autem harum nemo totam est ut, provident hic
+            maiores illum adipisci, sint voluptates? Eum, tempora. Officiis neque a ea, quaerat error molestias dolore
+            autem quisquam repellendus reprehenderit aliquam, culpa eligendi, omnis cupiditate laboriosam quasi tempora
+            exercitationem cum consectetur iste atque suscipit! Cum, repellendus fugiat quam adipisci sunt atque ut
+            blanditiis placeat quidem praesentium nisi porro recusandae ab quod! Cupiditate, quibusdam doloremque. Amet
+            quaerat ipsam doloremque est, eligendi totam deserunt? Veniam, nisi esse repellendus distinctio natus nobis
+            beatae, quia veritatis libero ex minima illum adipisci, est animi? Laudantium possimus excepturi facilis
+            dolore!</p>
+            
+        <h1>Our Goals</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi id labore vel explicabo aliquam temporibus
+            tempora optio voluptatum saepe atque quibusdam, vero dolorem incidunt nostrum! Delectus, cupiditate neque
+            aut rem debitis omnis, quas ex, ea accusamus accusantium porro! Delectus nam accusamus architecto tenetur
+            voluptates, dolor doloremque illum non voluptate mollitia labore quibusdam neque? Magni, ab ad illum dicta
+            odio dolorum id repudiandae. Aperiam atque, explicabo consequatur itaque voluptate odio unde vitae deleniti
+            perferendis illum! Dignissimos voluptatum magnam omnis fugit ipsum iusto itaque dicta animi. Fuga, placeat?
+            Aut ipsam est optio eveniet quidem mollitia voluptates aliquam hic quam, esse debitis quaerat!</p>
+    </div>
+    
+    <footer>
+        <div class="ftr">
+            <div class="f">
+                <p class="g">TRAVEL WONDERS</p>
+                <p class="h">Lorem, ipsum dolor sit amet <br> consectetur adipisicing elit.<br>
+                    Quas, dignissimos delec.Lorem, ipsum dolor sit amet <br> consectetur adipisicing elit.<br>
+                    Quas, dignissimos delec.</p>
+            </div>
+            <div class="j">
+                <p class="k">Quick Links</p>
+                <p class="m"> Home<br>
+                    Destinations<br>
+                    About<br>
+                    Bookings<br>
+                    Contact</p>
+            </div>
+            <div class="l">
+                <h4 class="o">Services</h4>
+                <p>Best serving<br>
+                    Trained Staff<br>
+                    Puntuality<br>
+                    Best Management</p>
+            </div>
+            <div class="c">
+                <h4 class="o">For Details visit</h4>
+                <p>Travelwonders@e-mail.com<br>
+                    +123-9807609</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <style>
+        /* ==================================== */
+        /* === 1. BASE STYLES & LAYOUT SETUP === */
+        /* ==================================== */
+        body {
+            /* Set up body to stack all elements vertically and center them */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            box-sizing: border-box;
+            min-height: 100vh; /* Ensures footer is at bottom on short pages */
+        }
+        
+        /* Helper class for constraining width of major sections */
+        .content-width {
+            width: 95%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+
+        /* ======================================= */
+        /* === 2. HEADER / NAVIGATION BAR (RESPONSIVE) === */
+        /* ======================================= */
+        header {
+            /* Full width header */
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-bottom: 30px;
+            
+            /* Flexbox for layout */
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .logo {
+            margin: 0;
+            padding: 0;
+            height: 40px;
+            width: 40px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%; /* Perfect circle */
+            object-fit: cover;
+        }
+
+        .links {
+            /* Use Flexbox for navigation links */
+            display: flex;
+            gap: 25px; /* Spacing between links */
+        }
+
+        .links a {
+            color: rgb(8, 8, 8);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: rgb(61, 162, 187);
+            text-decoration: underline;
+        }
+
+        /* ====================================== */
+        /* === 3. BOOKINGS SECTION (FORM STYLES) === */
+        /* ====================================== */
+        .sec {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the form elements */
+            text-align: center;
+            padding: 20px;
+            background-color: white; /* Optional: adds distinction */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 450px; /* Constrain the form width */
+            margin-bottom: 40px;
+            box-sizing: border-box;
+        }
+
+        .sec h1 {
+            font-size: clamp(24px, 5vw, 40px); /* Responsive font size */
+            color: rgb(61, 162, 187);
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        /* Styles for the airport/class display blocks */
+        .br {
+            background-color: #e0f7fa; /* Light background for airport/class */
+            border-radius: 10px;
+            width: 100%; /* Full width of parent .sec container */
+            max-width: 350px;
+            height: 50px;
+            line-height: 50px; /* Vertically center text */
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 20px 0;
+            padding: 0 10px;
+            box-sizing: border-box;
+            text-align: center;
+            color: black;
+        }
+        
+        /* Styles for simple text paragraphs like 'From', 'To', '2 Adults + Business' */
+        .sec p:not(.br) {
+            font-size: 18px;
+            margin: 15px 0 5px 0;
+            width: 100%;
+            text-align: left;
+            max-width: 350px;
+        }
+
+        .sec p.br + p {
+             /* Adjust margin for the passenger/class display line */
+             margin-top: -10px;
+             margin-bottom: 20px;
+        }
+
+
+        label {
+            font-size: 18px;
+            align-self: flex-start; /* Align label to the start */
+            max-width: 350px;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            max-width: 350px;
+            height: 40px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: rgb(61, 162, 187); 
+            color: white;
+            border-radius: 10px;
+            height: 50px;
+            width: 150px; /* Increased width for better click target */
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        /* ================================= */
+        /* === 4. FOOTER (GRID & RESPONSIVE) === */
+        /* ================================= */
+        footer {
+            width: 100%;
+            background-color: black;
+            color: white;
+            box-sizing: border-box;
+            padding: 20px 0;
+        }
+
+        .ftr {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* Mobile default: 1 column */
+            gap: 30px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+            width: 95%;
+            box-sizing: border-box;
+        }
+
+        .f, .j, .l, .c {
+            /* Reset fixed/absolute positioning */
+            position: static; 
+            width: auto;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }
+
+        .g, .k, .o {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .h, .m, .l p, .c p {
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: left;
+        }
+        
+        /* ================================ */
+        /* === 5. MEDIA QUERIES (BREAKPOINTS) === */
+        /* ================================ */
+
+        /* --- Tablet View (601px and wider) --- */
+        @media (min-width: 601px) {
+            
+            /* Footer: 2 Columns */
+            .ftr {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* --- Desktop View (900px and wider) --- */
+        @media (min-width: 900px) {
+            
+            /* Footer: 4 Columns */
+            .ftr {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            /* Align Quick Links (j) and Services (l) content to center/right for better visual balance on desktop */
+            .j, .l, .c { text-align: center; }
+            .j p, .l p, .c p { text-align: center; }
+            .j .k, .l .o, .c .o { text-align: center; }
+        }
+
+        /* --- Mobile View (480px and narrower) --- */
+        @media (max-width: 480px) {
+            /* Navbar Stacked for Mobile */
+            header {
+                flex-direction: column;
+            }
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 10px;
+            }
+            .links a {
+                padding: 5px 0;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="lgpic.jpg" alt="TRAVEL WONDERS Logo">
+        </div>
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="destiny.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="booking.html">Bookings</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+    
+    <section class="sec">
+        <h1>Where would you like to go?</h1>
+        
+        <p>From</p>
+        <p class="br">Ottawa Macdonald, International Airport, Canada</p>
+        
+        <p>To</p>
+        <p class="br">Paris, International Airport, France</p>
+        
+        <label for="date-input">Date</label>
+        <input type="date" id="date-input">
+        
+        <p>Passenger + Class</p>
+        <p class="br">2 Adults + Business</p>
+
+        <div style="width: 100%; max-width: 350px; text-align: left;">
+            <input type="radio" id="one" name="trip-type" value="one">
+            <label for="one" style="display: inline; width: auto;">One Way</label>
+            
+            <input type="radio" id="trip" name="trip-type" value="trip" style="margin-left: 15px;">
+            <label for="trip" style="display: inline; width: auto;">Round Trip</label>
+        </div>
+        
+        <button>Book now</button>
+    </section>
+    
+    <footer>
+        <div class="ftr">
+            <div class="f">
+                <p class="g">TRAVEL WONDERS</p>
+                <p class="h">Lorem, ipsum dolor sit amet <br> consectetur adipisicing elit.<br>
+                    Quas, dignissimos delec.Lorem, ipsum dolor sit amet <br> consectetur adipisicing elit.<br>
+                    Quas, dignissimos delec.</p>
+            </div>
+            <div class="j">
+                <p class="k">Quick Links</p>
+                <p class="m"> Home<br>
+                    Destinations<br>
+                    About<br>
+                    Bookings<br>
+                    Contact</p>
+            </div>
+            <div class="l">
+                <h4 class="o">Services</h4>
+                <p>Best serving<br>
+                    Trained Staff<br>
+                    Puntuality<br>
+                    Best Management</p>
+            </div>
+            <div class="c">
+                <h4 class="o">For Details visit</h4>
+                <p>Travelwonders@e-mail.com<br>
+                    +123-9807609</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
